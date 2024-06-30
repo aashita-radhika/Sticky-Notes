@@ -5,6 +5,13 @@ const main = document.querySelector("#main")
 
 
 
+const randomColor = ["#F5A9A9", "#F3F781", "#BCF5A9", "#A9F5F2", "#D0A9F5", "#F5A9D0"];
+// const col = document.querySelector('.color')
+function getColor(){
+    const randomIndex = Math.floor(Math.random()*randomColor.length)
+    return randomColor[randomIndex];
+}
+console.log(getColor())
 
 const saveNotes = () => {
     const notes = document.querySelectorAll(".notes textarea");
@@ -26,15 +33,16 @@ const saveNotes = () => {
 const addNote = (text = "") => {
     const note = document.createElement("div");
     note.classList.add("notes");
+    const noteColor = getColor()
     note.innerHTML = `
     <div class="toolbar">
     <img src="delete.png" alt="" class="icons trash">
     <img src="save.png" alt="" class="icons save">
     </div>
-    <textarea>${text}</textarea>
+    <textarea style="background-color:${noteColor};">${text}</textarea>
     `;
-
-   
+    
+    
     note.querySelector(".trash").addEventListener(
         "click",
         function(){
@@ -84,23 +92,15 @@ addbtn.addEventListener(
 
 // const getColor = () => {
 //     const num = Math.random()
-//     const elms = document.querySelectorAll(".notes textarea")
+//     const elms = document.querySelector(".notes textarea")
 //     if (num <= 0.33){ 
-//         elms.forEach(elm => {
-//         elm.style.backgroundColor = 'hsl(54, 100%, 81%)';
-//         });
+//         elms.style.backgroundColor = 'hsl(54, 100%, 81%)';
+    
 //     }
 //     else if (num > 0.33 & num <= 0.66){
-//         elms.forEach(elm => {
-//             elm.style.backgroundColor = 'hsl(265, 83%, 84%)';
-//             });
+//         elms.style.backgroundColor = 'hsl(265, 83%, 84%)';
 //     }
 //     else{
-//         elms.forEach(elm => {
-//             elm.style.backgroundColor = 'rgb(152, 238, 255)';
-//             });
+//         elms.style.backgroundColor = 'rgb(152, 238, 255)';
 //     }
 // }
-
-// addbtn.addEventListener("click", getColor)
-// getColor()
